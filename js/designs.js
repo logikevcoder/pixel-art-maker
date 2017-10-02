@@ -1,32 +1,40 @@
-// Select color input
-const colorPicker = document.getElementById('colorPicker');
-// Select size input
-const heightInput = document.getElementById('input_height').value;
-const widthInput = document.getElementById('input_width').value;
-const inputBtn = document.getElementById('buttonSubmit');
-const color = document.getElementById('colorPicker');
+// Define the variables for the color picker id and size picker id
+let colorPicker = document.getElementById('colorPicker');
+let sizePicker = $('#sizePicker');
+colorPicker.addEventListener("change", watchColorPicker, false);
 
+function watchColorPicker(event) {
+	document.querySelectorAll('tr').forEach(function (tr){
+		tr.style.color = event.target.value;
+	});
+}
 
-
-// 1.1 Define variables by selecting DOM elements that use interacts with
-	// 1.2 Such as the submit button, the table, and color picker need to be accessed
-		// 1.3 Value of color selector needs to be stored, since the clicked cell in the 
-		    // table needs to be set to the selected color
-
-// 2. Add event listerns to the relevant DOM elements, so that the user input can be color 
-//values and table sizes can be dynamically set by the user
-
-// 3.1 Set the size of the cross stitc canvas as an N by M grid with the makeGrid() function.
-    // 3.2 Each cell should hav ean event listener that sets the background color of the cell to the selected color
-
-
-// When size is submitted by the user, call makeGrid()
-$('inputBtn').on('submit', () => {
+// Size picker event handler which calls the makeGrid function
+sizePicker.submit('click', function(){
+	event.preventDefault();
 	makeGrid();
 });
 
+// Sets the background color of the clicked td items to the color selected
+$('#pixel_canvas').on('click', 'td', function(){
+	$(this).css('backgroundColor', colorPicker.value);
+});
+
+// Creates the function to accept user input values to 
+// define the size of the grid
 function makeGrid() {
+let gridHeight = $('#input_height').val();
+let gridWidth =  $('#input_width').val();
+let gridTable = $('#pixel_canvas');
+let gridBody = '';
 
-// Your code goes here!
-
+	for (let i = 0; i < gridHeight; i++) {
+		gridBody += '<tr></tr>';
+		for (let j = 0; j < gridWidth; j++) {
+			gridBody += '<td></td>';
+			gridBody += gridWidth[i] + gridHeight[j];
+		}
+	}
+	gridTable.append(gridBody);
 }
+
