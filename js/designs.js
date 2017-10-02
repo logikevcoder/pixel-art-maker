@@ -29,12 +29,24 @@ let gridTable = $('#pixel_canvas');
 let gridBody = '';
 
 	for (let i = 0; i < gridHeight; i++) {
-		gridBody += '<tr></tr>';
+		gridBody += '<tr>';
+		if (gridHeight > 50) {
+			
+		}
 		for (let j = 0; j < gridWidth; j++) {
 			gridBody += '<td></td>';
 			gridBody += gridWidth[i] + gridHeight[j];
+			if (gridWidth > 50) {
+
+			}
 		}
+		gridBody += '</tr>';
 	}
 	gridTable.append(gridBody);
 }
+
+// Button to clear the grid
+$('#clearGrid').click(function(){
+	$('#pixel_canvas').empty();
+});
 
