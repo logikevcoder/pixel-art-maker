@@ -1,50 +1,43 @@
 // Define the variables for the color picker id and size picker id
-let colorPicker = document.getElementById('colorPicker');
-let $sizePicker = $('#sizePicker');
-colorPicker.addEventListener("change", watchColorPicker, false);
-let $canvas = $('#pixel_canvas');
-
-
-function watchColorPicker(event) {
-	document.querySelectorAll('tr').forEach(function (tr){
-		tr.style.color = event.target.value;
-	});
-}
+let colorPicker = document.getElementById("colorPicker");
+let $sizePicker = $("#sizePicker");
+colorPicker.addEventListener("change", colorPicker, false);
+let $canvas = $("#pixel_canvas");
 
 // Size picker event handler which calls the makeGrid function
-$sizePicker.submit('click', function(){
+$sizePicker.submit("click", function(){
 	event.preventDefault();
 	makeGrid();
 });
 
 // Sets the background color of the clicked td items to the color selected
-$canvas.on('click', 'td', function(){
-	$(this).css('backgroundColor', colorPicker.value);
+$canvas.on("click", "td", function(){
+	$(this).css("backgroundColor", colorPicker.value);
 });
 
 // Creates the function to accept user input values to 
 // define the size of the grid
 function makeGrid() {
-let gridHeight = $('#input_height').val();
-let gridWidth =  $('#input_width').val();
-let gridTable = $('#pixel_canvas');
-let gridBody = '';
+	let gridHeight = $("#input_height").val();
+	let gridWidth =  $("#input_width").val();
+	let gridTable = $("#pixel_canvas");
+	let gridBody = "";
 
 	for (let i = 0; i < gridHeight; i++) {
-		gridBody += '<tr>';
+		gridBody += "<tr>";
 
 		for (let j = 0; j < gridWidth; j++) {
-			gridBody += '<td></td>';
+			gridBody += "<td></td>";
 			gridBody += gridWidth[i] + gridHeight[j];
 		}
-		gridBody += '</tr>';
+		gridBody += "</tr>";
 	}
 	gridTable.append(gridBody);
 }
 
 
 // Button to clear the grid
-$('#clearGrid').click(function(){
-	$('#pixel_canvas').empty();
+$("#clearGrid").click(function(){
+	$("#pixel_canvas").empty();
 });
 
