@@ -6,7 +6,8 @@ let $canvas = $("#pixel_canvas");
 
 // Size picker event handler which calls the makeGrid function
 $sizePicker.on("submit", function(e){
-	e.preventDefault();
+	e.preventDefault(e);
+	$("#pixel_canvas").empty();
 	makeGrid();
 });
 
@@ -23,6 +24,7 @@ function makeGrid() {
 	let gridTable = $("#pixel_canvas");
 	let gridBody = "";
 
+	// Build the table based on the input values of the height and width attributes
 	for (let i = 0; i < gridHeight; i++) {
 		gridBody += "<tr>";
 
@@ -35,9 +37,4 @@ function makeGrid() {
 	gridTable.append(gridBody);
 }
 
-
-// Button to clear the grid
-$("#clearGrid").click(function(){
-	$("#pixel_canvas").empty();
-});
 

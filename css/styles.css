@@ -45,3 +45,7 @@ input[type=number] {
     margin-top: 15px;
     width: 6em;
 }
+
+#my-input:invalid {
+    color: red;
+}
