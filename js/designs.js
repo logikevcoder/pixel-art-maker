@@ -1,19 +1,11 @@
-// Define the variables for the color picker id and size picker id
-let colorPicker = document.getElementById("colorPicker");
-let $sizePicker = $("#sizePicker");
-colorPicker.addEventListener("change", watchColorPicker, false);
-let $canvas = $("#pixel_canvas");
-
-
-function watchColorPicker(event) {
-    document.querySelectorAll("tr").forEach(function (tr){
-		tr.style.color = event.target.value;
-	});
-}
+const colorPicker = document.getElementById("colorPicker");
+const $sizePicker = $("#sizePicker");
+const $canvas = $("#pixel_canvas");
 
 // Size picker event handler which calls the makeGrid function
-$sizePicker.submit("click", function(){
-	event.preventDefault();
+$sizePicker.on("submit", function(e){
+	e.preventDefault(e);
+	$("#pixel_canvas").empty();
 	makeGrid();
 });
 
@@ -25,11 +17,12 @@ $canvas.on("click", "td", function(){
 // Creates the function to accept user input values to 
 // define the size of the grid
 function makeGrid() {
-let gridHeight = $("#input_height").val();
-let gridWidth =  $("#input_width").val();
-let gridTable = $("#pixel_canvas");
-let gridBody = "";
+	let gridHeight = $("#input_height").val();
+	let gridWidth =  $("#input_width").val();
+	let gridTable = $("#pixel_canvas");
+	let gridBody = "";
 
+	// Build the table based on the input values of the height and width attributes
 	for (let i = 0; i < gridHeight; i++) {
 		gridBody += "<tr>";
 
@@ -41,10 +34,3 @@ let gridBody = "";
 	}
 	gridTable.append(gridBody);
 }
-
-
-// Button to clear the grid
-$("#clearGrid").click(function(){
-	$("#pixel_canvas").empty();
-});
-
