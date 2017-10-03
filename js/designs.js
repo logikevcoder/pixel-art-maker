@@ -1,8 +1,7 @@
 // Define the variables for the color picker id and size picker id
 const colorPicker = document.getElementById("colorPicker");
 const $sizePicker = $("#sizePicker");
-colorPicker.addEventListener("change", colorPicker, false);
-let $canvas = $("#pixel_canvas");
+const $canvas = $("#pixel_canvas");
 
 // Size picker event handler which calls the makeGrid function
 $sizePicker.on("submit", function(e){
